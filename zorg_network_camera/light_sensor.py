@@ -3,25 +3,24 @@ from PIL import Image, ImageStat
 import urllib2, urlparse
 
 
-class Camera(Driver):
+class LightSensor(Driver):
+    """
+    This driver makes it possible to use a camera
+    as a light sensor by analyzing the lighting
+    levels of the image.
+    """
 
     def __init__(self, options, connection):
-        super(Camera, self).__init__(options, connection)
+        super(LightSensor, self).__init__(options, connection)
 
         self.url = options.get("url", "")
         self.image_last_modified = None
-        self.image_cache_path = None
+
+        self.image_brightness = 0
 
         self.commands = [
-            "get_url",
             "average_brightness",
         ]
-
-    def get_url(self):
-        """
-        Returns the url of the network camera.
-        """
-        return self.url
 
     def download_image(self):
         """
@@ -69,10 +68,14 @@ class Camera(Driver):
         Return the average brightness of the image.
         """
         # Only download the image if it has changed
-        if self.has_changed():
-            self.image_cache_path = self.download_image()
+        if not self.has_changed():
+            return self.image_brightness
 
-        converted_image = Image.open(self.image_cache_path).convert('L')
+        image_path = self.download_image()
+
+        converted_image = Image.open(image_path).convert('L')
         statistics = ImageStat.Stat(converted_image)
-        return statistics.mean[0]
+
+        self.image_brightness = statistics.mean[0]
+        return self.image_brightness
 

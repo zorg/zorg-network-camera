@@ -1,14 +1,15 @@
-from zorg_network_camera.camera import Camera
+from zorg_network_camera.feed import Feed
+from zorg_network_camera.light_sensor import LightSensor
 from unittest import TestCase
 
 
-class TestCamera(TestCase):
+class TestFeed(TestCase):
 
     def setUp(self):
         options = {
             "url": "http://www.gravatar.com/avatar/0?d=mm"
         }
-        self.camera = Camera(options, None)
+        self.camera = Feed(options, None)
 
     def test_get_url(self):
         """
@@ -18,6 +19,14 @@ class TestCamera(TestCase):
             self.camera.get_url(),
             "http://www.gravatar.com/avatar/0?d=mm"
         )
+
+class TestLightSensor(TestCase):
+
+    def setUp(self):
+        options = {
+            "url": "http://www.gravatar.com/avatar/0?d=mm"
+        }
+        self.camera = LightSensor(options, None)
 
     def test_get_image(self):
         """
