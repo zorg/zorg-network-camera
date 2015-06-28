@@ -1,32 +1,14 @@
-from zorg_network_camera.feed import Feed
-from zorg_network_camera.light_sensor import LightSensor
+from zorg_network_camera.adaptor import Camera
 from unittest import TestCase
 
 
-class TestFeed(TestCase):
+class TestCameraAdaptor(TestCase):
 
     def setUp(self):
         options = {
             "url": "http://www.gravatar.com/avatar/0?d=mm"
         }
-        self.camera = Feed(options, None)
-
-    def test_get_url(self):
-        """
-        Test that the url of the image is returned.
-        """
-        self.assertEqual(
-            self.camera.get_url(),
-            "http://www.gravatar.com/avatar/0?d=mm"
-        )
-
-class TestLightSensor(TestCase):
-
-    def setUp(self):
-        options = {
-            "url": "http://www.gravatar.com/avatar/0?d=mm"
-        }
-        self.camera = LightSensor(options, None)
+        self.camera = Camera(options)
 
     def test_get_image(self):
         """
@@ -68,12 +50,3 @@ class TestLightSensor(TestCase):
         last modified header is not present.
         """
         pass
-
-    def test_average_brightness(self):
-        """
-        Test that a value for the average
-        brightness of the image is returned.
-        """
-        brightness = self.camera.average_brightness()
-        self.assertTrue(brightness > 0)
-
