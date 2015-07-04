@@ -1,23 +1,14 @@
-from zorg_network_camera.camera import Camera
+from zorg_network_camera.adaptor import Camera
 from unittest import TestCase
 
 
-class TestCamera(TestCase):
+class TestCameraAdaptor(TestCase):
 
     def setUp(self):
         options = {
             "url": "http://www.gravatar.com/avatar/0?d=mm"
         }
-        self.camera = Camera(options, None)
-
-    def test_get_url(self):
-        """
-        Test that the url of the image is returned.
-        """
-        self.assertEqual(
-            self.camera.get_url(),
-            "http://www.gravatar.com/avatar/0?d=mm"
-        )
+        self.camera = Camera(options)
 
     def test_get_image(self):
         """
@@ -59,12 +50,3 @@ class TestCamera(TestCase):
         last modified header is not present.
         """
         pass
-
-    def test_average_brightness(self):
-        """
-        Test that a value for the average
-        brightness of the image is returned.
-        """
-        brightness = self.camera.average_brightness()
-        self.assertTrue(brightness > 0)
-

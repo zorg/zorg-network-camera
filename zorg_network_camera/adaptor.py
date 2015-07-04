@@ -1,27 +1,14 @@
-from zorg.driver import Driver
-from PIL import Image, ImageStat
+from zorg.adaptor import Adaptor
 import urllib2, urlparse
 
 
-class Camera(Driver):
+class Camera(Adaptor):
 
-    def __init__(self, options, connection):
-        super(Camera, self).__init__(options, connection)
+    def __init__(self, options):
+        super(Camera, self).__init__(options)
 
         self.url = options.get("url", "")
         self.image_last_modified = None
-        self.image_cache_path = None
-
-        self.commands = [
-            "get_url",
-            "average_brightness",
-        ]
-
-    def get_url(self):
-        """
-        Returns the url of the network camera.
-        """
-        return self.url
 
     def download_image(self):
         """
@@ -63,16 +50,3 @@ class Camera(Driver):
         # Return True if the image has been modified
         # or if the image has no last-modified header
         return True
-
-    def average_brightness(self):
-        """
-        Return the average brightness of the image.
-        """
-        # Only download the image if it has changed
-        if self.has_changed():
-            self.image_cache_path = self.download_image()
-
-        converted_image = Image.open(self.image_cache_path).convert('L')
-        statistics = ImageStat.Stat(converted_image)
-        return statistics.mean[0]
-
