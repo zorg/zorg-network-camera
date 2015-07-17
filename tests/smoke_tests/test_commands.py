@@ -18,13 +18,9 @@ class FeedSmokeTests(SmokeTestCase):
         method on the driver class.
         """
         feed = Feed(self.options, self.connection)
-        all_commands_have_methods = True
 
         for command in feed.commands:
-            if command not in dir(feed):
-                all_commands_have_methods = False
-
-        self.assertTrue(all_commands_have_methods)
+            self.assertIn(command, dir(feed))
 
 
 class LightSensorSmokeTests(SmokeTestCase):
@@ -35,11 +31,7 @@ class LightSensorSmokeTests(SmokeTestCase):
         method on the driver class.
         """
         sensor = LightSensor(self.options, self.connection)
-        all_commands_have_methods = True
 
         for command in sensor.commands:
-            if command not in dir(sensor):
-                all_commands_have_methods = False
-
-        self.assertTrue(all_commands_have_methods)
+            self.assertIn(command, dir(sensor))
 
