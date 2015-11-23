@@ -26,3 +26,15 @@ used to load the image into your application.
 The `LightSensor` module allows you to use the camera as a light sensor.
 This driver provides the ability to get the average lighting level from
 the camera.
+
+### OCR Driver
+
+Optical character recognition (OCR) is the process of programmatically
+converting images of typed, handwritten or printed text into machine-encoded
+text. The `OCR` driver module provided in this package provides a utility that
+makes it possible for your robot to process written text that it sees.
+
+The OCR driver uses a LIFO queue, which by default stores the last 10 written
+items that the robot detected. The number of items stored can be modified by
+passing in an optional parameter to the driver.
+
