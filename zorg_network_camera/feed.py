@@ -11,8 +11,6 @@ class Feed(Driver):
     def __init__(self, options, connection):
         super(Feed, self).__init__(options, connection)
 
-        self.url = options.get("url", "")
-
         self.commands = [
             "get_url",
         ]
@@ -21,4 +19,4 @@ class Feed(Driver):
         """
         Returns the url of the network camera.
         """
-        return self.url
+        return self.connection.url

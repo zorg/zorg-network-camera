@@ -12,7 +12,6 @@ class LightSensor(Driver):
     def __init__(self, options, connection):
         super(LightSensor, self).__init__(options, connection)
 
-        self.url = options.get("url", "")
         self.image_brightness = 0
 
         self.commands = [

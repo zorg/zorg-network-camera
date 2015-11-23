@@ -50,3 +50,4 @@ class Camera(Adaptor):
         # Return True if the image has been modified
         # or if the image has no last-modified header
         return True
+
