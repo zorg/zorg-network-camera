@@ -4,6 +4,8 @@ from zorg_network_camera.light_sensor import LightSensor
 from zorg_network_camera.ocr import OCR
 from unittest import TestCase
 from mock import MagicMock
+import os
+import shutil
 
 
 class TestFeed(TestCase):
@@ -12,8 +14,8 @@ class TestFeed(TestCase):
         options = {
             "url": "http://www.gravatar.com/avatar/0?d=mm"
         }
-        connection = Camera(options)
-        self.camera = Feed(options, connection)
+        self.connection = Camera(options)
+        self.camera = Feed(options, self.connection)
 
     def test_get_url(self):
         """
@@ -24,6 +26,13 @@ class TestFeed(TestCase):
             "http://www.gravatar.com/avatar/0?d=mm"
         )
 
+    def tearDown(self):
+        """
+        Clean up by removing the test image that was downloaded.
+        """
+        if os.path.exists(self.connection.cache_directory):
+            shutil.rmtree(self.connection.cache_directory)
+
 
 class TestLightSensor(TestCase):
 
@@ -31,8 +40,8 @@ class TestLightSensor(TestCase):
         options = {
             "url": "http://www.gravatar.com/avatar/0?d=mm"
         }
-        connection = Camera(options)
-        self.camera = LightSensor(options, connection)
+        self.connection = Camera(options)
+        self.camera = LightSensor(options, self.connection)
 
     def test_get_brightness(self):
         """
@@ -42,46 +51,51 @@ class TestLightSensor(TestCase):
         brightness = self.camera.get_brightness()
         self.assertTrue(brightness > 0)
 
+    def tearDown(self):
+        """
+        Clean up by removing the test image that was downloaded.
+        """
+        if os.path.exists(self.connection.cache_directory):
+            shutil.rmtree(self.connection.cache_directory)
+
 
 class TestOCR(TestCase):
 
     def setUp(self):
         options = {
-            "url": "http://www.gravatar.com/avatar/0?d=mm"
+            "url": "http://salvius.org/images/news02.jpg"
         }
         connection = Camera(options)
+
+        # Mock the the image returned by the download method
+        connection.download_image = MagicMock(return_value="tests/news.jpg")
+
         self.ocr = OCR(options, connection)
+
+    def test_ocr(self):
+        text = self.ocr.read()
+        self.assertIn("ROBOT BUILDER from page 1", text)
 
     def test_invalid_text(self):
         """
         Test that a string containing no
         words returns false.
         """
-        options = {
-            "url": "http://salvius.org/images/news02.jpg"
-        }
-        connection = Camera(options)
-        ocr = OCR(options, connection)
-
         # Mock the read method to return a non-word string.
-        ocr.read = MagicMock(return_value="<()> ~$ %^ H4 fuha9 &&.0 --@-- Qs!")
+        self.ocr.read = MagicMock(
+            return_value="<()> ~$ %^ H4 fuha9 &&.0 --@-- Qs!"
+        )
 
-        text_detected = ocr.text_visible()
+        text_detected = self.ocr.text_visible()
         self.assertFalse(text_detected)
 
     def test_valid_text(self):
         """
         Test that a string containing words returns true.
         """
-        options = {
-            "url": "http://salvius.org/images/news02.jpg"
-        }
-        connection = Camera(options)
-        ocr = OCR(options, connection)
-
         # Mock the read method to return a non-word string.
-        ocr.read = MagicMock(return_value="Scientific American volume 307")
+        self.ocr.read = MagicMock(return_value="Scientific American volume 307")
 
-        text_detected = ocr.text_visible()
+        text_detected = self.ocr.text_visible()
         self.assertTrue(text_detected)
 

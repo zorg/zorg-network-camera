@@ -1,5 +1,6 @@
 from zorg.adaptor import Adaptor
 import urllib2, urlparse
+import os
 
 
 class Camera(Adaptor):
@@ -8,6 +9,7 @@ class Camera(Adaptor):
         super(Camera, self).__init__(options)
 
         self.url = options.get("url", "")
+        self.cache_directory = options.get("cache_directory", ".cache")
         self.image_last_modified = None
 
     def download_image(self):
@@ -18,11 +20,17 @@ class Camera(Adaptor):
         split = urlparse.urlsplit(self.url)
         filename = split.path.split("/")[-1]
 
+        # Ensure the directory to store the image cache exists
+        if not os.path.exists(self.cache_directory):
+            os.makedirs(self.cache_directory)
+
+        filepath = os.path.join(self.cache_directory, filename)
+
         data = urllib2.urlopen(self.url)
-        with open(filename, "wb") as image:
+        with open(filepath, "wb") as image:
             image.write(data.read())
 
-        return filename
+        return filepath
 
     def has_changed(self):
         """
