@@ -1,5 +1,6 @@
 from zorg.driver import Driver
-import textract
+from PIL import Image
+import pytesseract
 
 
 class OCR(Driver):
@@ -23,7 +24,9 @@ class OCR(Driver):
         # Only download the image if it has changed
         if self.connection.has_changed():
             image_path = self.connection.download_image()
-            self.text_cache = textract.process(image_path, encoding='ascii')
+            image = Image.open(image_path)
+            self.text_cache = pytesseract.image_to_string(image)
+            image.close()
 
         return self.text_cache
 
