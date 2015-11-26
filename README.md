@@ -34,7 +34,9 @@ converting images of typed, handwritten or printed text into machine-encoded
 text. The `OCR` driver module provided in this package provides a utility that
 makes it possible for your robot to process written text that it sees.
 
-The OCR driver uses a LIFO queue, which by default stores the last 10 written
-items that the robot detected. The number of items stored can be modified by
-passing in an optional parameter to the driver.
+The OCR driver achieves the process of extracting text from an image through
+the use of the open source [Tesseract OCR](https://github.com/tesseract-ocr/tesseract)
+module. Tesseract is an optical character recognition engine origionally
+developed by Hewlett-Packard. Development of Tesseract has been
+[sponsored by Google since 2006](http://googlecode.blogspot.com/2006/08/announcing-tesseract-ocr.html).
 
