@@ -1,9 +1,17 @@
 # Zorg Network Camera
 
+[![PYPI](https://img.shields.io/pypi/v/zorg-network-camera.svg)](https://pypi.python.org/pypi/zorg-network-camera/)
 [![Build Status](https://travis-ci.org/zorg-framework/zorg-network-camera.svg?branch=0.0.1)](https://travis-ci.org/zorg-framework/zorg-network-camera)
+[![Coverage Status](https://coveralls.io/repos/zorg-framework/zorg-network-camera/badge.svg?branch=master&service=github)](https://coveralls.io/github/zorg-framework/zorg-network-camera?branch=master)
 
 This module contains device adaptors and drivers that make it possible
 to connect network cameras to your robot.
+
+## Installation
+
+```
+pip install zorg-network-camera
+```
 
 ## Network Camera Adaptor
 
@@ -26,3 +34,17 @@ used to load the image into your application.
 The `LightSensor` module allows you to use the camera as a light sensor.
 This driver provides the ability to get the average lighting level from
 the camera.
+
+### OCR Driver
+
+Optical character recognition (OCR) is the process of programmatically
+converting images of typed, handwritten or printed text into machine-encoded
+text. The `OCR` driver module provided in this package provides a utility that
+makes it possible for your robot to process written text that it sees.
+
+The OCR driver achieves the process of extracting text from an image through
+the use of the open source [Tesseract OCR](https://github.com/tesseract-ocr/tesseract)
+module. Tesseract is an optical character recognition engine origionally
+developed by Hewlett-Packard. Development of Tesseract has been
+[sponsored by Google since 2006](http://googlecode.blogspot.com/2006/08/announcing-tesseract-ocr.html).
+
