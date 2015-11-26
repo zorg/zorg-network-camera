@@ -1,9 +1,17 @@
 # Zorg Network Camera
 
+[![PYPI](https://img.shields.io/pypi/v/zorg-network-camera.svg)](https://pypi.python.org/pypi/zorg-network-camera/)
 [![Build Status](https://travis-ci.org/zorg-framework/zorg-network-camera.svg?branch=0.0.1)](https://travis-ci.org/zorg-framework/zorg-network-camera)
+[![Coverage Status](https://coveralls.io/repos/zorg-framework/zorg-network-camera/badge.svg?branch=master&service=github)](https://coveralls.io/github/zorg-framework/zorg-network-camera?branch=master)
 
 This module contains device adaptors and drivers that make it possible
 to connect network cameras to your robot.
+
+## Installation
+
+```
+pip install zorg-network-camera
+```
 
 ## Network Camera Adaptor
 

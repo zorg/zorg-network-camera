@@ -16,9 +16,11 @@ except ImportError:
 req = open("requirements.txt")
 requirements = req.readlines()
 
+version_string = __import__('zorg_network_camera').__version__
+
 setup(
     name="zorg-network-camera",
-    version="0.0.1",
+    version=version_string,
     url="https://github.com/zorg-framework/zorg-network-camera",
     description="Python framework for robotics and physical computing.",
     long_description=readme("README.md"),
@@ -29,7 +31,7 @@ setup(
     include_package_data=True,
     install_requires=requirements,
     license="MIT",
-    zip_safe=False,
+    zip_safe=True,
     platforms=["any"],
     keywords=["zorg", "network", "ip", "camera"],
     classifiers=[
