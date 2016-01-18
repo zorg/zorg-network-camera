@@ -21,7 +21,7 @@ version_string = __import__('zorg_network_camera').__version__
 setup(
     name="zorg-network-camera",
     version=version_string,
-    url="https://github.com/zorg-framework/zorg-network-camera",
+    url="https://github.com/zorg/zorg-network-camera",
     description="Python framework for robotics and physical computing.",
     long_description=readme("README.md"),
     author="Zorg Group",
