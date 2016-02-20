@@ -1,6 +1,13 @@
 from zorg.adaptor import Adaptor
-import urllib2, urlparse
 import os
+
+# Check urllib for Python 2 or 3 compatability
+try:
+    from urllib.parse import urlsplit
+    from urllib import request as urllib_request
+except ImportError:
+    from urlparse import urlsplit
+    import urllib2 as urllib_request
 
 
 class Camera(Adaptor):
@@ -17,7 +24,7 @@ class Camera(Adaptor):
         Download the image and return the
         local path to the image file.
         """
-        split = urlparse.urlsplit(self.url)
+        split = urlsplit(self.url)
         filename = split.path.split("/")[-1]
 
         # Ensure the directory to store the image cache exists
@@ -26,7 +33,7 @@ class Camera(Adaptor):
 
         filepath = os.path.join(self.cache_directory, filename)
 
-        data = urllib2.urlopen(self.url)
+        data = urllib_request.urlopen(self.url)
         with open(filepath, "wb") as image:
             image.write(data.read())
 
@@ -40,10 +47,10 @@ class Camera(Adaptor):
         quicker that downloading and processing
         the whole file.
         """
-        request = urllib2.Request(self.url)
-        request.get_method = lambda : 'HEAD'
+        request = urllib_request.Request(self.url)
+        request.get_method = lambda: 'HEAD'
 
-        response = urllib2.urlopen(request)
+        response = urllib_request.urlopen(request)
         information = response.info()
 
         if 'Last-Modified' in information:
@@ -58,4 +65,3 @@ class Camera(Adaptor):
         # Return True if the image has been modified
         # or if the image has no last-modified header
         return True
-

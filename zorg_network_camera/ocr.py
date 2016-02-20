@@ -45,7 +45,7 @@ class OCR(Driver):
         for word in words:
 
             # If the word is a numeric value
-            if word.lstrip('-').replace('.','',1).isdigit():
+            if word.lstrip('-').replace('.', '', 1).isdigit():
                 return True
 
             # If the word contains only letters with a length from 2 to 20
@@ -53,4 +53,3 @@ class OCR(Driver):
                 return True
 
         return False
-

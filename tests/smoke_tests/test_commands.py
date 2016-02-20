@@ -48,4 +48,3 @@ class OCRSmokeTests(SmokeTestCase):
 
         for command in sensor.commands:
             self.assertIn(command, dir(sensor))
-

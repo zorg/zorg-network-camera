@@ -10,6 +10,7 @@ path to the camera_one image will look like this:
 /api/robots/CameraBot/devices/camera_one/commands/get_url
 '''
 
+
 def work(my):
     while True:
         print(my.ocr.read())
@@ -36,4 +37,3 @@ api = zorg.api("zorg.api.Http", {})
 
 robot.start()
 api.start()
-
