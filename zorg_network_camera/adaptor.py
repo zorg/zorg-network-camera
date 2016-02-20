@@ -1,11 +1,12 @@
 from zorg.adaptor import Adaptor
-import urlparse
 import os
 
 # Check urllib for Python 2 or 3 compatability
 try:
+    from urllib.parse import urlsplit
     from urllib import request as urllib_request
 except ImportError:
+    from urlparse import urlsplit
     import urllib2 as urllib_request
 
 
@@ -23,7 +24,7 @@ class Camera(Adaptor):
         Download the image and return the
         local path to the image file.
         """
-        split = urlparse.urlsplit(self.url)
+        split = urlsplit(self.url)
         filename = split.path.split("/")[-1]
 
         # Ensure the directory to store the image cache exists
