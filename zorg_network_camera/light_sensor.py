@@ -33,4 +33,3 @@ class LightSensor(Driver):
 
         self.image_brightness = statistics.mean[0]
         return self.image_brightness
-

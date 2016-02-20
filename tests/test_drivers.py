@@ -94,8 +94,9 @@ class TestOCR(TestCase):
         Test that a string containing words returns true.
         """
         # Mock the read method to return a non-word string.
-        self.ocr.read = MagicMock(return_value="Scientific American volume 307")
+        self.ocr.read = MagicMock(
+            return_value="Scientific American volume 307"
+        )
 
         text_detected = self.ocr.text_visible()
         self.assertTrue(text_detected)
-
