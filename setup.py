@@ -1,10 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-try:
-    from setuptools import setup, find_packages
-except ImportError:
-    from distutils.core import setup, find_packages
+from setuptools import setup, find_packages
 
 try:
     from pypandoc import convert
@@ -22,13 +19,12 @@ setup(
     name="zorg-network-camera",
     version=version_string,
     url="https://github.com/zorg/zorg-network-camera",
-    description="Python framework for robotics and physical computing.",
+    description="A module which includes various network camera utilities.",
     long_description=readme("README.md"),
     author="Zorg Group",
     author_email="gunthercx@gmail.com",
     packages=find_packages(),
     package_dir={"zorg_network_camera": "zorg_network_camera"},
-    include_package_data=True,
     install_requires=requirements,
     license="MIT",
     zip_safe=True,
@@ -42,7 +38,6 @@ setup(
         "Environment :: Web Environment",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2",
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.3",
