@@ -12,6 +12,7 @@ except ImportError:
 
 req = open("requirements.txt")
 requirements = req.readlines()
+req.close()
 
 version_string = __import__('zorg_network_camera').__version__
 
