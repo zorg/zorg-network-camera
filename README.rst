@@ -1,7 +1,8 @@
 Zorg Network Camera
 ===================
 
-|PYPI| |Build Status| |Coverage Status|
+|Join the chat at https://gitter.im/zorg/zorg| |PYPI| |Build Status|
+|Coverage Status|
 
 This module contains device adaptors and drivers that make it possible
 to connect network cameras to your robot.
@@ -55,6 +56,8 @@ Hewlett-Packard. Development of Tesseract has been `sponsored by Google
 since
 2006 <http://googlecode.blogspot.com/2006/08/announcing-tesseract-ocr.html>`__.
 
+.. |Join the chat at https://gitter.im/zorg/zorg| image:: https://badges.gitter.im/Join%20Chat.svg
+   :target: https://gitter.im/zorg/zorg?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 .. |PYPI| image:: https://img.shields.io/pypi/v/zorg-network-camera.svg
    :target: https://pypi.python.org/pypi/zorg-network-camera/
 .. |Build Status| image:: https://travis-ci.org/zorg/zorg-network-camera.svg?branch=0.0.1

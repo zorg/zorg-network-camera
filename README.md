@@ -1,5 +1,6 @@
 # Zorg Network Camera
 
+[![Join the chat at https://gitter.im/zorg/zorg](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/zorg/zorg?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![PYPI](https://img.shields.io/pypi/v/zorg-network-camera.svg)](https://pypi.python.org/pypi/zorg-network-camera/)
 [![Build Status](https://travis-ci.org/zorg/zorg-network-camera.svg?branch=0.0.1)](https://travis-ci.org/zorg/zorg-network-camera)
 [![Coverage Status](https://coveralls.io/repos/github/zorg/zorg-network-camera/badge.svg?branch=master)](https://coveralls.io/github/zorg/zorg-network-camera?branch=master)
